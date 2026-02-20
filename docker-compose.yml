@@ -1,16 +1,4 @@
-version: '3.8'
-
 services:
-  # MongoDB Database
-  mongo:
-    image: mongo:latest
-    container_name: slooze_mongo
-    restart: always
-    ports:
-      - "27017:27017" # Expose to host for local tools if needed
-    volumes:
-      - mongo_data:/data/db
-
   # Backend API (NestJS)
   backend:
     build: ./backend
@@ -18,12 +6,13 @@ services:
     restart: always
     ports:
       - "3000:3000"
+    command: npm run start:prod
     environment:
-      - DATABASE_URL=mongodb://mongo:27017/slooze
-      - JWT_SECRET=supersecretkey123
+      - DATABASE_URL=mongodb+srv://nandini16ray_db_user:BPO1xrNWJhPVpb8q@cluster0.9ijjfiz.mongodb.net/product
+      - JWT_SECRET=super-secret-key
       - PORT=3000
-    depends_on:
-      - mongo
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   # Frontend App (Next.js)
   frontend:
@@ -37,6 +26,3 @@ services:
       - PORT=3001
     depends_on:
       - backend
-
-volumes:
-  mongo_data:

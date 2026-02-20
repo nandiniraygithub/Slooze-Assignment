@@ -6,10 +6,10 @@ COPY package*.json ./
 
 RUN npm install --legacy-peer-deps
 
-
 COPY . .
 
-# Generate Prisma Client
+# Copy Prisma schema and generate client
+COPY prisma ./prisma/
 RUN npx prisma generate
 
 # Build the application
