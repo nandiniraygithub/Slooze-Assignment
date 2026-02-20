@@ -8,12 +8,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Seed script configuration
-seed {
-  provider = "ts-node"
-  path   = "./seed.ts"
-}
-
 model User {
   id       String   @id @default(auto()) @map("_id") @db.ObjectId
   email    String   @unique
