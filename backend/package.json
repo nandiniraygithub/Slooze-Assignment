@@ -6,7 +6,6 @@
   "scripts": {
     "build": "nest build",
     "seed": "npx ts-node prisma/seed.ts",
-    "postbuild": "npm run seed",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
