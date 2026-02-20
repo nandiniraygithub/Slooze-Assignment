@@ -5,9 +5,9 @@
 
 [build.environment]
   NODE_VERSION = "20"
-  NEXT_PUBLIC_API_URL = "https://slooze-assignment.onrender.com/graphql"
+  NEXT_PUBLIC_API_URL = "https://slooze-assignment-1.onrender.com/graphql"
 
 [[redirects]]
   from = "/api/*"
-  to = "https://slooze-assignment.onrender.com/api/:splat"
+  to = "https://slooze-assignment-1.onrender.com/api/:splat"
   status = 200
