@@ -112,48 +112,6 @@ For a one-click local setup, you can use Docker Compose.
    - Backend API: `http://localhost:3000/graphql`
    - Database: `localhost:27017`
 
-## 🚢 How to Deploy
-
-### Authenticate & Database (MongoDB Atlas)
-1. Create a free account on [MongoDB Atlas](https://www.mongodb.com/atlas).
-2. Create a Cluster and get your connection string.
-3. Replace the `DATABASE_URL` in your backend `.env` with this production string.
-
-### Push to GitHub
-1. Initialize Git in the root folder:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   ```
-2. Create a new repository on GitHub.
-3. Link and push:
-   ```bash
-   git remote add origin https://github.com/<your-username>/<repo-name>.git
-   git branch -M main
-   git push -u origin main
-   ```
-
-### Backend Deployment (Render.com)
-1. Sign up on [Render](https://render.com/).
-2. Create a new **Web Service**.
-3. Connect your GitHub repository.
-4. Settings:
-   - **Root Directory:** `backend`
-   - **Build Command:** `npm install && npx prisma generate && npm run build`
-   - **Start Command:** `npm run start:prod`
-   - **Environment Variables:** Add `DATABASE_URL` and `JWT_SECRET`.
-
-### Frontend Deployment (Vercel)
-1. Sign up on [Vercel](https://vercel.com/).
-2. Import your GitHub repository.
-3. Settings:
-   - **Root Directory:** `frontend`
-   - **Framework Preset:** Next.js
-   - **Environment Variables:** Add `NEXT_PUBLIC_API_URL` pointing to your deployed Backend URL (e.g., `https://your-backend.onrender.com/graphql`).
-4. Click **Deploy**.
-
----
 
 ## 🧪 Default Users
 
