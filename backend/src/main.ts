@@ -17,9 +17,12 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       'http://localhost:3001',
-      'https://classy-shortbread-7f377d.netlify.app'
+      'https://classy-shortbread-7f377d.netlify.app',
+      'https://slooze-assignment-1.onrender.com'
     ],
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   });
 
   await app.listen(3000);
