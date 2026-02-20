@@ -1,6 +1,7 @@
 # Commodities Management System (Slooze)
 
 A robust full-stack application for managing commodity inventories, featuring role-based access control (RBAC), real-time dashboards, and secure authentication.
+🌐 **Demo:** [View Live Demo](https://classy-shortbread-7f377d.netlify.app/login/)
 
 ## 🚀 Tech Stack
 
