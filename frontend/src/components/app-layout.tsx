@@ -22,7 +22,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     const [mounted, setMounted] = useState(false);
     const pathname = usePathname();
     const router = useRouter();
-    const isAuthPage = pathname === '/login' || pathname === '/signup';
+    const isAuthPage = pathname === '/login' || pathname === '/signup' || pathname === '/';
 
     useEffect(() => {
         setMounted(true);
