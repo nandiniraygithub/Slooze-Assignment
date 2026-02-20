@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongo:
+    image: mongo:latest
+    container_name: slooze_mongo
+    restart: always
+    ports:
+      - "27017:27017" # Expose to host for local tools if needed
+    volumes:
+      - mongo_data:/data/db
+
+  # Backend API (NestJS)
+  backend:
+    build: ./backend
+    container_name: slooze_backend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=mongodb+srv://nandini16ray_db_user:BPO1xrNWJhPVpb8q@cluster0.9ijjfiz.mongodb.net/product
+      - JWT_SECRET=supersecretkey123
+      - PORT=3000
+    depends_on:
+      - mongo
+    links:
+      - mongo
+
+  # Frontend App (Next.js)
+  frontend:
+    build: ./frontend
+    container_name: slooze_frontend
+    restart: always
+    ports:
+      - "3001:3001"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:3000/graphql
+      - PORT=3001
+    depends_on:
+      - backend
+
+volumes:
+  mongo_data:
