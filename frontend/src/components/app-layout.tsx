@@ -32,6 +32,18 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         }
     }, [pathname]);
 
+    useEffect(() => {
+        if (user && mounted) {
+            const redirectPath = localStorage.getItem('redirectPath');
+            if (redirectPath) {
+                localStorage.removeItem('redirectPath');
+                router.push(redirectPath);
+            } else if (pathname === '/login' || pathname === '/') {
+                router.push('/dashboard');
+            }
+        }
+    }, [user, mounted, router, pathname]);
+
     if (!mounted) return null;
     if (isAuthPage) return <>{children}</>;
     if (!user) return <>{children}</>;

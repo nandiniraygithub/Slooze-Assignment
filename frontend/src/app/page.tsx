@@ -42,7 +42,15 @@ export default function Home() {
         localStorage.setItem('token', response.data.login.accessToken);
         localStorage.setItem('user', JSON.stringify(response.data.login.user));
         toast.success('Login successful!');
-        router.push('/dashboard');
+        
+        // Check for redirect path
+        const redirectPath = localStorage.getItem('redirectPath');
+        if (redirectPath) {
+          localStorage.removeItem('redirectPath');
+          router.push(redirectPath);
+        } else {
+          router.push('/dashboard');
+        }
       } else {
         toast.error('Invalid credentials');
       }
