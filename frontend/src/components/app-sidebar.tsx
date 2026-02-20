@@ -42,6 +42,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { toast } from 'sonner';
 
 export function AppSidebar({ user }: { user: any }) {
     const pathname = usePathname();
@@ -49,11 +50,30 @@ export function AppSidebar({ user }: { user: any }) {
     const isAdmin = user?.role === 'MANAGER';
 
     const handleLogout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT';
-        document.cookie = 'user=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT';
-        router.push('/login');
+        try {
+            // Clear localStorage
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            
+            // Clear cookies with proper expiration
+            const expires = "Thu, 01 Jan 1970 00:00:01 GMT";
+            document.cookie = `token=; path=/; expires=${expires}`;
+            document.cookie = `user=; path=/; expires=${expires}`;
+            
+            // Show success message
+            toast.success('Logged out successfully');
+            
+            // Force redirect to login page
+            router.push('/login');
+            
+            // Force page reload to clear any cached state
+            setTimeout(() => {
+                window.location.reload();
+            }, 100);
+        } catch (error) {
+            console.error('Logout error:', error);
+            toast.error('Failed to logout');
+        }
     };
 
     const navItems = [
