@@ -19,12 +19,10 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - DATABASE_URL=mongodb+srv://nandini16ray_db_user:BPO1xrNWJhPVpb8q@cluster0.9ijjfiz.mongodb.net/product
+      - DATABASE_URL=mongodb://mongo:27017/slooze
       - JWT_SECRET=supersecretkey123
       - PORT=3000
     depends_on:
-      - mongo
-    links:
       - mongo
 
   # Frontend App (Next.js)
@@ -35,7 +33,7 @@ services:
     ports:
       - "3001:3001"
     environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:3000/graphql
+      - NEXT_PUBLIC_API_URL=http://backend:3000/graphql
       - PORT=3001
     depends_on:
       - backend
