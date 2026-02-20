@@ -58,9 +58,9 @@ export function AppSidebar({ user }: { user: any }) {
 
     const navItems = [
         {
-            title: 'Home',
-            url: '/',
-            icon: Home,
+            title: 'Products',
+            url: '/products',
+            icon: Package,
             items: []
         },
         {
