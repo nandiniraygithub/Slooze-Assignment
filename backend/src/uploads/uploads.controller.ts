@@ -38,7 +38,7 @@ export class UploadsController {
             throw new BadRequestException('File is required');
         }
         return {
-            url: `http://localhost:3000/uploads/${file.filename}`,
+            url: `/uploads/${file.filename}`,
         };
     }
 }
